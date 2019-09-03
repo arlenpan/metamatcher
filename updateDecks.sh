@@ -1,3 +1,3 @@
-node src/scraper.js
+node src/scripts/scraper.js
 
 npm run deploy

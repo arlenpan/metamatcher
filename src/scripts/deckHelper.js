@@ -6,7 +6,7 @@ const parseList = data => {
     const ownedCards = {};
     data.split('\n')
     .filter(Boolean)
-    .map(l => {
+    .forEach(l => {
         const name = l.substr(l.indexOf(' ')+1).trim();
         const count = parseInt(l.substr(0, l.indexOf(' ')));
         if (ownedCards[name]) {
@@ -20,7 +20,7 @@ const parseList = data => {
 
 const diffPrice = (ownedCards, deck) => {
     let diff = deck.price;
-    Object.keys(deck.list).map(name => {
+    Object.keys(deck.list).forEach(name => {
         if (ownedCards[name]) {
             const qtyOwned = Math.min(deck.list[name].qty, ownedCards[name]);
             diff -= qtyOwned * deck.list[name].pricePer;
@@ -31,7 +31,7 @@ const diffPrice = (ownedCards, deck) => {
 
 const diffCards = (ownedCards, deck) => {
     let missingCards = {};
-    Object.keys(deck.list).map(name => {
+    Object.keys(deck.list).forEach(name => {
         // ignore basics
         if (CARD_LAND_BASIC.includes(name)) return;
         if (ownedCards[name]) {
